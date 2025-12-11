@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인왕산 자락길: 윤동주와 서울의 역사 문화 체험</title>
+    <script src="https://cdn.tailwindcss.com?plugins=typography"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --warm-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            --cool-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f0f2f5;
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step-card {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .step-card:hover::before {
+            left: 100%;
+        }
+
+        .step-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .glass-card {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pulse-glow {
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8); }
+        }
+
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            transform-origin: left;
+            transform: scaleX(0);
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+    <div class="scroll-indicator" id="scrollIndicator"></div>
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="hero-bg text-center mb-16 py-14 rounded-3xl relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <div class="floating absolute top-10 left-10 w-20 h-20 bg-white rounded-full"></div>
+                <div class="floating absolute top-20 right-20 w-16 h-16 bg-white rounded-full" style="animation-delay: -2s;"></div>
+                <div class="floating absolute bottom-20 left-1/4 w-12 h-12 bg-white rounded-full" style="animation-delay: -4s;"></div>
+            </div>
+            <div class="relative z-10">
+                <h1 class="text-5xl md:text-5xl font-bold text-white mb-6 fade-in-up">
+                    •서촌 코스•
+                </h1>
+                <p class="text-5xl md:text-7xl font-bold text-white/90 mb-8 fade-in-up" style="animation-delay: 0.2s;">동주의 산책길을 걷다</p>
+                <div class="w-32 h-1 bg-white/50 mx-auto mb-8 fade-in-up" style="animation-delay: 0.4s;"></div>
+                <div class="inline-block bg-white/20 backdrop-blur-sm px-8 py-2 rounded-full border border-white/30 fade-in-up" style="animation-delay: 0.6s;">
+                    <p class="text-white font-medium">🎓 한성여자고등학교 1학년 지역연계 역사문화 체험활동</p>
+                </div>
+            </div>
+        </header>
+
+        <!-- Introduction Section -->
+        <section class="mb-16 bg-white p-8 rounded-xl shadow-md">
+            <div class="flex flex-col sm:flex-row justify-between sm:items-center mb-4 gap-4 sm:gap-0">
+                <h2 class="text-2xl font-bold text-blue-800">프로젝트 소개</h2>
+                <div class="flex items-center gap-2">
+                    <button id="speedBtn" class="bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg text-sm transition-colors hover:bg-gray-300">1x</button>
+                    <button id="playBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg flex items-center gap-2 transition-transform transform hover:scale-105">
+                        <svg id="playIcon" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M4.018 15.132A1.25 1.25 0 0 1 2.25 14V6a1.25 1.25 0 0 1 1.768-1.132l8 4a1.25 1.25 0 0 1 0 2.264l-8 4Z"></path></svg>
+                        <svg id="pauseIcon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M5.75 4.5a.75.75 0 0 0-.75.75v10a.75.75 0 0 0 .75.75h2a.75.75 0 0 0 .75-.75V5.25a.75.75 0 0 0-.75-.75h-2ZM12.25 4.5a.75.75 0 0 0-.75.75v10a.75.75 0 0 0 .75.75h2a.75.75 0 0 0 .75-.75V5.25a.75.75 0 0 0-.75-.75h-2Z"></path></svg>
+                        <span id="playBtnText">해설 듣기</span>
+                    </button>
+                </div>
+            </div>
+            <p class="text-lg leading-relaxed">
+                본 프로젝트는 윤동주 시인의 생애와 문학적 발자취를 따라 인왕산 자락길을 걷는 역사 문화 체험 코스입니다. 급경사가 없는 평탄한 길을 걸으며 시인의 삶을 느끼고, 서울의 근현대사적 상처와 아름다운 경관을 함께 경험하며 문학, 역사, 지리를 아우르는 입체적인 학습을 목표로 합니다.
+            </p>
+            <audio id="introAudio" class="hidden"></audio>
+        </section>
+
+        <!-- Full Course Map Section -->
+        <section class="mb-16">
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-6">전체 코스 지도</h2>
+            <div class="bg-white p-4 rounded-xl shadow-lg overflow-hidden">
+                <!-- 최종 수정된 깃허브 Raw 이미지 링크입니다. -->
+                <img src="https://raw.githubusercontent.com/imuzikr/link-image/main/inwangsan_map.jpg" alt="인왕산 자락길 전체 코스" class="w-full h-auto object-contain rounded-lg">
+            </div>
+        </section>
+
+        <!-- Course Details Section -->
+        <section>
+            <h2 class="text-3xl font-bold text-center text-gray-900 mb-10">프로젝트 코스 안내</h2>
+            <div class="space-y-20">
+                <!-- Step 1 -->
+                <div onclick="openModal(1)" class="step-card group md:flex items-start bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border-r-8 border-blue-500">
+                    <div class="md:w-1/3">
+                        <img src="https://raw.githubusercontent.com/imuzikr/link-image/main/1T3A9439.png" alt="윤동주문학관" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8">
+                        <p class="text-sm font-bold text-blue-500">1단계</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">새로운 시작과 포부</h3>
+                        <p class="text-lg font-semibold text-gray-600 mb-4">장소: 윤동주문학관 (출발 지점)</p>
+                        <p class="leading-relaxed mb-4">
+                            코스는 윤동주문학관에서 시작하며, 입구에 새겨진 시 「새로운 길」을 통해 경성 생활에 대한 그의 기대와 포부를 느낄 수 있습니다.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-blue-600 font-semibold group-hover:gap-4 transition-all duration-300">
+                            <span>자세히 보기</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div onclick="openModal(2)" class="step-card group md:flex items-start bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border-r-8 border-cyan-500">
+                    <div class="md:w-1/3">
+                        <img src="https://raw.githubusercontent.com/imuzikr/link-image/main/SE-c1da921f-cba8-40f2-8ac8-2a47ab2d891a.jpg" alt="시인의 언덕" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8">
+                        <p class="text-sm font-bold text-cyan-500">2단계</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">시대의 양심과 문학</h3>
+                        <p class="text-lg font-semibold text-gray-600 mb-4">장소: 시인의 언덕</p>
+                        <p class="leading-relaxed mb-4">
+                            문학관 옆 '시인의 언덕'에는 그의 대표작 「서시」 시비가 있습니다. 시인의 고뇌와 시대의 양심을 되새겨보는 공간입니다.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-cyan-600 font-semibold group-hover:gap-4 transition-all duration-300">
+                            <span>자세히 보기</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div onclick="openModal(3)" class="step-card group md:flex items-start bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border-r-8 border-emerald-500">
+                    <div class="md:w-1/3">
+                        <img src="https://raw.githubusercontent.com/imuzikr/link-image/refs/heads/main/choso.jfif" alt="초소책방" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8">
+                        <p class="text-sm font-bold text-emerald-500">3단계</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">경관 관찰 및 휴식</h3>
+                        <p class="text-lg font-semibold text-gray-600 mb-4">장소: 초소책방</p>
+                        <p class="leading-relaxed mb-4">
+                            과거 경비 초소였던 '초소책방'은 아름다운 전망을 자랑하는 카페입니다. 서울의 풍경을 감상하며 잠시 쉬어가는 공간입니다.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-emerald-600 font-semibold group-hover:gap-4 transition-all duration-300">
+                            <span>자세히 보기</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div onclick="openModal(4)" class="step-card group md:flex items-start bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border-r-8 border-indigo-500">
+                    <div class="md:w-1/3">
+                        <img src="https://raw.githubusercontent.com/imuzikr/link-image/refs/heads/main/5-32.jfif" alt="무무대 전망대" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8">
+                        <p class="text-sm font-bold text-indigo-500">4단계</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">경성의 야경과 삶의 성찰</h3>
+                        <p class="text-lg font-semibold text-gray-600 mb-4">장소: 무무대(無無臺) 전망대</p>
+                        <p class="leading-relaxed mb-4">
+                            윤동주가 경성의 야경을 보았으리라 추측되는 '무무대' 전망대입니다. 아름다운 서울 전경을 배경으로 삶을 성찰하는 시간을 갖습니다.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-indigo-600 font-semibold group-hover:gap-4 transition-all duration-300">
+                            <span>자세히 보기</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 5 -->
+                <div onclick="openModal(5)" class="step-card group md:flex items-start bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border-r-8 border-rose-500">
+                    <div class="md:w-1/3">
+                        <img src="https://github.com/imuzikr/link-image/blob/main/screen-rock.jpg?raw=true" alt="인왕산 병풍바위" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8">
+                        <p class="text-sm font-bold text-rose-500">5단계</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">일제강점기의 상처</h3>
+                        <p class="text-lg font-semibold text-gray-600 mb-4">장소: 인왕산 병풍바위</p>
+                        <p class="leading-relaxed mb-4">
+                            병풍바위에는 일제강점기 총독이 새긴 글씨가 남아있습니다. 잊지 말아야 할 역사의 상처를 직접 확인할 수 있는 곳입니다.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-rose-600 font-semibold group-hover:gap-4 transition-all duration-300">
+                            <span>자세히 보기</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6 -->
+                <div onclick="openModal(6)" class="step-card group md:flex items-start bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border-r-8 border-teal-500">
+                    <div class="md:w-1/3">
+                        <img src="https://github.com/imuzikr/link-image/blob/main/image.jpg?raw=true" alt="수성동 계곡" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8">
+                        <p class="text-sm font-bold text-teal-500">6단계</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">조선시대 예술과 지리</h3>
+                        <p class="text-lg font-semibold text-gray-600 mb-4">장소: 수성동 계곡</p>
+                        <p class="leading-relaxed mb-4">
+                            조선시대 화가 겸재 정선의 그림 배경이 된 '수성동 계곡'입니다. 그림과 현재의 풍경을 겹쳐보며 예술적 감흥을 느껴봅니다.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-teal-600 font-semibold group-hover:gap-4 transition-all duration-300">
+                            <span>자세히 보기</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 7 -->
+                <div onclick="openModal(7)" class="step-card group md:flex items-start bg-white rounded-xl shadow-lg overflow-hidden cursor-pointer border-r-8 border-violet-500">
+                    <div class="md:w-1/3">
+                        <img src="https://github.com/imuzikr/link-image/blob/main/hasukzip.jpg?raw=true" alt="누상동 하숙집 터" class="w-full h-full object-cover">
+                    </div>
+                    <div class="md:w-2/3 p-6 md:p-8">
+                        <p class="text-sm font-bold text-violet-500">7단계</p>
+                        <h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">시인과 고등학생의 연결</h3>
+                        <p class="text-lg font-semibold text-gray-600 mb-4">장소: 누상동 하숙집 터 (종착 지점)</p>
+                        <p class="leading-relaxed mb-4">
+                            윤동주가 대표작들을 썼던 '누상동 하숙집 터'에서 여정을 마무리합니다. 시인의 공간에서 문학적 계승과 역사의식을 고취합니다.
+                        </p>
+                        <div class="inline-flex items-center gap-2 text-violet-600 font-semibold group-hover:gap-4 transition-all duration-300">
+                            <span>자세히 보기</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">→</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Educational Implications Section -->
+        <section class="mt-20 glass-card p-8 md:p-12 fade-in-up">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl md:text-4xl font-bold text-gradient mb-4">코스의 특징 및 교육적 시사점</h2>
+                <div class="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/30 hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-white">🗺️</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">지리적 이해</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed text-center">
+                        인왕산 자락길(우백호길)을 걸으며 서울의 지리적 특성을 몸으로 이해합니다.
+                    </p>
+                </div>
+                <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/30 hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-white">📚</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">문학적 조망</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed text-center">
+                        비극적 종말과 달리 밝고 희망찼던 시인의 초기 작품 「새로운 길」을 통해 윤동주의 문학 세계를 입체적으로 조망합니다.
+                    </p>
+                </div>
+                <div class="bg-white/60 backdrop-blur-sm p-6 rounded-2xl border border-white/30 hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="text-center mb-4">
+                        <div class="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <span class="text-2xl text-white">🤝</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">우정과 기록</h3>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed text-center">
+                        윤동주의 시를 지켜 세상에 알린 정병욱 선생의 우정과 기록의 중요성을 배웁니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 transition-opacity duration-300">
+        <div id="modal-content-wrapper" class="bg-white rounded-2xl shadow-2xl p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto relative transform transition-all duration-300 scale-95 opacity-0">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800 transition">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 id="modal-title" class="text-3xl font-bold text-gray-900 mb-6"></h3>
+            <div id="modal-body" class="prose prose-lg max-w-none text-gray-700 leading-relaxed">
+                <!-- Detailed content will be injected here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="text-center p-6 mt-12 bg-gray-800 text-white">
+        <p>&copy; 2025 한성여자고등학교 1학년 역사문화체험 프로젝트. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const modalData = {
+            1: {
+                title: "1단계: 윤동주문학관",
+                content: `
+                    <p>우리의 여정은 윤동주문학관에서 공식적으로 시작됩니다. 이곳은 '자하문 고개·윤동주문학관' 버스 정거장 건너편에 위치해 있으며, 시인의 문학 세계로 들어서는 첫 관문입니다.</p>
+                    <p>문학관 입구 벽면에는 윤동주 시인의 시, <strong>「새로운 길」</strong>이 새겨져 있습니다. 이 시는 시인이 고향 북간도를 떠나 경성의 연희전문에 입학한 직후에 쓴 작품으로, 오랫동안 고대하던 문학 공부와 더 넓은 세상에서의 생활에 대한 젊은 시인의 기대와 포부가 행간마다 생생하게 느껴집니다.</p>
+                    <blockquote class="border-l-4 border-blue-300 pl-4 italic">"내를 건너서 숲으로 / 고개를 넘어서 마을로 // 어제도 가고 오늘도 갈 / 나의 길 새로운 길 ... 나의 길은 언제나 새로운 길 / 오늘도... 내일도..."</blockquote>
+                    <p>이 시는 우리가 흔히 그의 생애에서 떠올리는 비극적 종말과 고뇌의 그림자와는 대조적으로, 미래를 향한 밝고 단단한 낙관을 보여주기에 특히 중요한 의미를 지닙니다.</p>
+                `
+            },
+            2: {
+                title: "2단계: 시인의 언덕",
+                content: `
+                    <p>문학관 왼쪽 계단을 따라 오르면 '시인의 언덕'에 도착합니다. 이곳은 한양도성의 북악 구간이 끝나고 인왕 구간으로 이어지는 길목에 자리한 상징적인 공간으로, 수많은 시민이 이곳을 찾아 시인의 정신을 기리고 그의 시를 통해 위안과 용기를 얻어 갑니다.</p>
+                    <p>언덕 중앙에는 그의 대표작이자 한국인이 가장 사랑하는 시, <strong>「서시」</strong>가 새겨진 시비가 세워져 있습니다. 김소월의 「진달래꽃」, 이육사의 「절정」과 더불어 가장 아끼는 작품으로 꼽히는 이 시비는, 이곳이 윤동주의 정신을 기리는 대표적인 공간임을 상징적으로 보여줍니다.</p>
+                `
+            },
+            3: {
+                title: "3단계: 초소책방",
+                content: `
+                    <p>인왕산 자락길은 '밋밋하게 비탈져 나간 산의 밑부분'이라는 의미처럼 급경사 없이 평평하게 이어져 누구나 편안하게 걸을 수 있습니다. 얼마 걷지 않아 첫 번째 명소인 <strong>'초소책방'</strong>에 도착하게 됩니다.</p>
+                    <p>이곳은 과거 청와대 인근을 경비하던 초소였습니다. 경계와 감시를 위해선 시야가 탁 트여야 했기에, 이곳의 전망은 그야말로 일품입니다. 삼엄했던 경계의 공간이 이제는 시민들을 위한 아늑한 휴식 공간으로 탈바꿈한 것입니다.</p>
+                    <p>"메가시티 서울에서 산자락에 안겨 이만한 풍경을 볼 수 있는 곳도 흔치 않으니" 꼭 잠시 쉬어가시며 이 풍경을 만끽하시길 권합니다.</p>
+                `
+            },
+            4: {
+                title: "4단계: 무무대(無無臺) 전망대",
+                content: `
+                    <p>초소책방을 나와 조금 더 걸으면, 또 다른 멋진 전망대인 <strong>'무무대(無無臺)'</strong>가 우리를 맞이합니다. 이곳의 이름은 '아무것도 없구나, 오직 아름다움만 있을 뿐'이라는 뜻을 담고 있습니다.</p>
+                    <p>이곳은 윤동주 시인이 누상동에 하숙하던 시절, 후배 정병욱과 함께 인왕산에 올라 경성의 야경을 보며 이렇게 말했다고 전해집니다.</p>
+                    <blockquote class="border-l-4 border-blue-300 pl-4 italic">"남산에서 내려다보는 서울보다는 인왕산에서 내려다보는 서울이 훨씬 아름답지 않아요?"</blockquote>
+                    <p>시인의 이 한마디는 이곳이 바로 그 장소였으리라는 상상력을 더하게 합니다. 저 너머 경복궁과 광화문, 창덕궁과 종묘의 숲, 그리고 더 멀리 낙산의 능선까지 한눈에 들어오는 풍경을 감상하며 시인이 바라봤을 도시의 모습을 음미해 보시기 바랍니다.</p>
+                `
+            },
+            5: {
+                title: "5단계: 인왕산 병풍바위",
+                content: `
+                    <p>아름다운 자연 속에는 때로 아픈 역사가 숨겨져 있습니다. 무무대에서 내리막길로 접어들어 조금 걷다 보면 인왕산 병풍바위에 새겨진 깊은 상처를 마주하게 됩니다. 길을 따라 내려오다 보면 병풍처럼 펼쳐진 바위에 무언가 부자연스러운 흔적, 식민 폭력의 흉터가 남아있는 것을 발견할 수 있습니다.</p>
+                    <p>이것은 1939년, 조선총독 미나미 지로가 국가총동원 체제를 강화하기 위해 열린 '대일본청년단대회'를 기념한다는 명목으로, 한양의 우백호인 인왕산 병풍바위에 <strong>'東亞靑年團結(동아청년단결)'</strong>이라는 여덟 글자를 새겨 넣은 것입니다. 이는 산의 몸에 새겨진 폭력적인 낙인이었습니다.</p>
+                    <p>"서울을 한눈에 굽어볼 수 있는 곳이고 서울 사람들은 안 보려야 안 볼 수 없는 위치였기 때문"에 이곳에 새긴 것은 식민 지배의 이데올로기를 서울 시민들의 눈앞에 각인시키려 한 폭력적인 상징 조작이었습니다. 해방 이후 이 글씨를 지우려는 노력이 있었지만, 그 상처는 지금도 병풍바위에 깊게 남아 우리의 아픈 역사를 증언하고 있습니다.</p>
+                `
+            },
+            6: {
+                title: "6단계: 수성동 계곡",
+                content: `
+                    <p>길을 따라 계속 내려가다가 횡단보도를 지나 왼쪽으로 <strong>'수성동계곡'</strong>이라는 표지판을 따라 들어서면, 시간을 거슬러 조선시대로 떠나는 여행이 시작됩니다. 이곳은 청계천의 발원지, 즉 <strong>수원(水源)</strong>이었던 중요한 장소이며, 빼어난 풍광으로 수많은 문인과 화가들의 사랑을 받았던 문화적 공간입니다.</p>
+                    <p>특히 조선 후기의 위대한 화가, <strong>겸재 정선</strong>과 인연이 깊습니다. 그의 화첩인 <strong>&lt;장동팔경첩(壯洞八景帖)&gt;</strong>에 실린 &lt;수성동&gt; 그림의 실제 배경이 바로 이곳입니다. '장동'은 현재의 효자동과 통의동 일대를 가리킵니다.</p>
+                    <p>계곡이 끝나고 마을이 시작되는 지점에 이르면, 작은 돌다리 '기린교'를 발견할 수 있습니다. 겸재 정선의 그림과 지금의 풍경을 겹쳐보는 것은 이곳에서만 누릴 수 있는 특별한 즐거움입니다.</p>
+                `
+            },
+            7: {
+                title: "7단계: 누상동 하숙집 터",
+                content: `
+                    <p>수성동 계곡을 지나 마을로 내려오면 오늘 여정의 종착지, 윤동주 시인이 1941년 5월 초부터 9월까지 후배 정병욱과 함께 하숙했던 집터에 도착합니다. 이곳은 단순히 시인이 머물렀던 공간이 아니라, 불과 넉 달 남짓한 짧은 기간 동안 그의 대표작 9편이 탄생한 문학사적으로 매우 중요한 <strong>'창작의 산실'</strong>입니다.</p>
+                    <p>평생 그의 시를 지키고 알렸던 후배 정병욱 선생은 훗날 "내가 평생 해낸 일 가운데 가장 보람 있고 자랑스런 일이 무엇이냐고 묻는 이가 있다면, 나는 서슴지 않고 동주의 시를 간직했다가 세상에 알려 줄 수 있게 한 일이라고 대답할 것이다"라고 말했습니다.</p>
+                    <p>1970년대 중반, 정병욱 선생이 이곳을 다시 찾았을 때, 과거 하숙방이었던 방문을 열어보니 윤동주와 자신의 책상이 놓여있던 자리에 어느 고등학생의 책상이 놓여 있었습니다. 그는 그 학생의 국어책에 실린 동주 형의 시가 바로 이 자리에서 쓰였다는 사실을 떠올리며 가슴이 뿌듯해졌다고 기록했습니다. 이 일화는 시가 태어난 공간이 시간을 뛰어넘어 새로운 세대에게 이어지며 문학이 어떻게 우리의 삶 속에서 영원히 살아 숨 쉬는지를 감동적으로 보여줍니다.</p>
+                `
+            }
+        };
+
+        const modal = document.getElementById('modal');
+        const modalContentWrapper = document.getElementById('modal-content-wrapper');
+
+        function openModal(step) {
+            const modalTitle = document.getElementById('modal-title');
+            const modalBody = document.getElementById('modal-body');
+            const data = modalData[step];
+
+            if (data) {
+                modalTitle.innerText = data.title;
+                modalBody.innerHTML = data.content;
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    modalContentWrapper.classList.remove('scale-95', 'opacity-0');
+                }, 10); // Start transition after display is set
+            }
+        }
+
+        function closeModal() {
+            modalContentWrapper.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); // Wait for transition to finish
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+
+        // Scroll progress indicator
+        function updateScrollProgress() {
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            const indicator = document.getElementById('scrollIndicator');
+            if (indicator) {
+                indicator.style.transform = `scaleX(${scrollPercent / 100})`;
+            }
+        }
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Initialize scroll animations and observers
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add scroll progress listener
+            window.addEventListener('scroll', updateScrollProgress);
+
+            // Observe all fade-in elements
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Add smooth reveal animation to header elements
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in-up').forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.add('visible');
+                    }, index * 200);
+                });
+            }, 500);
+
+            // Add parallax effect to floating elements
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const rate = scrolled * -0.5;
+
+                document.querySelectorAll('.floating').forEach((el, index) => {
+                    const speed = (index + 1) * 0.3;
+                    el.style.transform = `translateY(${rate * speed}px)`;
+                });
+            });
+
+            // Add hover sound effect simulation (visual feedback)
+            document.querySelectorAll('.step-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.filter = 'brightness(1.05)';
+                });
+
+                card.addEventListener('mouseleave', function() {
+                    this.style.filter = 'brightness(1)';
+                });
+            });
+
+            // --- Audio Player Logic ---
+            const playBtn = document.getElementById('playBtn');
+            const speedBtn = document.getElementById('speedBtn');
+            const introAudio = document.getElementById('introAudio');
+            const playIcon = document.getElementById('playIcon');
+            const pauseIcon = document.getElementById('pauseIcon');
+            const playBtnText = document.getElementById('playBtnText');
+            
+            introAudio.src = "https://github.com/imuzikr/link-image/raw/refs/heads/main/audio/seochongil.m4a";
+
+            const playbackSpeeds = [1.0, 1.25];
+            let currentSpeedIndex = 0;
+
+            if (playBtn) {
+                playBtn.addEventListener('click', () => {
+                    if (!introAudio.src || introAudio.src === window.location.href) {
+                        alert('오디오 파일 URL이 설정되지 않았습니다. 스크립트에서 src를 추가해주세요.');
+                        return;
+                    }
+
+                    if (introAudio.paused) {
+                        introAudio.play();
+                        playIcon.classList.add('hidden');
+                        pauseIcon.classList.remove('hidden');
+                        playBtnText.textContent = '일시정지';
+                    } else {
+                        introAudio.pause();
+                        playIcon.classList.remove('hidden');
+                        pauseIcon.classList.add('hidden');
+                        playBtnText.textContent = '해설 듣기';
+                    }
+                });
+            }
+
+            if (speedBtn) {
+                speedBtn.addEventListener('click', () => {
+                    currentSpeedIndex = (currentSpeedIndex + 1) % playbackSpeeds.length;
+                    const newSpeed = playbackSpeeds[currentSpeedIndex];
+                    introAudio.playbackRate = newSpeed;
+                    speedBtn.textContent = `${newSpeed}x`;
+                });
+            }
+
+            if (introAudio) {
+                introAudio.addEventListener('ended', () => {
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+                    playBtnText.textContent = '해설 듣기';
+                    introAudio.currentTime = 0;
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>
